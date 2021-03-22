@@ -3,7 +3,7 @@ from requests import api
 import time
 
 # WEBDRIVER:
-driver = webdriver.Chrome('./chromedriver')
+driver = webdriver.Chrome()
 driver.get('https://fabrykatestow.pl')
 driver.close()
 
