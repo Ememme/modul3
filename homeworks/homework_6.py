@@ -11,6 +11,7 @@ driver = webdriver.Chrome('/Applications/chromedriver')
 url = 'https://fabrykatestow.pl/'
 
 driver.get(url)
+driver.maximize_window()
 # Finding courses tab:
 # courses = driver.find_element_by_xpath('//*[@id="menu-item-622"]/a')
 courses_tab = driver.find_element_by_partial_link_text('KURSY')
