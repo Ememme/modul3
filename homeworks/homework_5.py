@@ -32,8 +32,8 @@ def return_currency_data(currency):
 
 
 def write_csv():
-    with open('currency.csv', 'w', newline='') as f:
-        writer = csv.writer(f)
+    with open('currency.csv', 'a', newline='') as file:
+        writer = csv.writer(file)
         writer.writerows([info])
 
 sample = 10
