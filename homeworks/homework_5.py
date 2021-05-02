@@ -44,32 +44,52 @@ def format_time(str):
     return formatted_time
 
 
-def write_csv():
-    with open('currency.csv', 'a', newline='') as file:
-        writer = csv.writer(file)
-        writer.writerows([info])
+def write_csv(string):
+    if string:
+        with open('currency.csv', 'a', newline='') as file:
+            writer = csv.writer(file)
+            writer.writerows([string])
+    else:
+        with open('currency.csv', 'a', newline='') as file:
+            writer = csv.writer(file)
+            writer.writerow(["Brak danych"])
 
 
-# def get_PLN_rate():
-sample = 10
-
-while sample != 0:
-    sample = sample - 1
-    info = return_currency_data('PLN')
-    print(info)
-
-    write_csv()
-    date = f"{info[0]}"
-    rate_PLN = f"{info[1]}"
-    req_date = f"{info[3]}"
-    req_time = f"{info[2]}"
-
-    #
+def display_info(date, rate_PLN, req_date, req_time):
     print(f'''
-    -----------------------------------------
-    Kurs EUR do PLN z dnia {date} wynosi {rate_PLN}
-    Zapytanie z dnia {req_date}
-    Czas trwania zapytania wyniósł {req_time} s.
-        -----------------------------------------''')
+                -----------------------------------------
+                Kurs EUR do PLN z dnia {date} wynosi {rate_PLN}
+                Zapytanie z dnia {req_date}
+                Czas trwania zapytania wyniósł {req_time} s.
+                -----------------------------------------''')
 
-    time.sleep(5)
+def get_PLN_rate():
+    sample = 10
+
+
+    while sample != 0:
+        sample = sample - 1
+        info = return_currency_data('PLN')
+
+        if info:
+            print(info)
+
+            write_csv(info)
+            date = f"{info[0]}"
+            rate_PLN = f"{info[1]}"
+            req_date = f"{info[3]}"
+            req_time = f"{info[2]}"
+
+            display_info(date, rate_PLN, req_date, req_time)
+
+        #
+            # print(f'''
+            # -----------------------------------------
+            # Kurs EUR do PLN z dnia {date} wynosi {rate_PLN}
+            # Zapytanie z dnia {req_date}
+            # Czas trwania zapytania wyniósł {req_time} s.
+            # -----------------------------------------''')
+
+        time.sleep(5)
+
+get_PLN_rate()
