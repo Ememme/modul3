@@ -17,10 +17,16 @@ def request_API_data(url):
         return [response_data, r_elapsed_time, r_hour]
     except requests.exceptions.Timeout:
         print_timeout_error_message()
+    except requests.ConnectionError:
+        print_connection_error()
 
 
 def print_timeout_error_message():
     print('Brak połączenia z serwisem')
+
+
+def print_connection_error():
+    print('Brak dostępu do internetu')
 
 
 def return_currency_data(currency):
@@ -57,24 +63,23 @@ def write_csv(string):
 
 def display_info(date, rate_PLN, req_date, req_time):
     print(f'''
-                -----------------------------------------
+                ------------------------------------------------
                 Kurs EUR do PLN z dnia {date} wynosi {rate_PLN}
-                Zapytanie z dnia {req_date}
+                Zapytanie z dnia {req_date} GMT.
                 Czas trwania zapytania wyniósł {req_time} s.
-                -----------------------------------------''')
+                -------------------------------------------------''')
+
 
 def get_PLN_rate():
     sample = 10
 
-
     while sample != 0:
         sample = sample - 1
         info = return_currency_data('PLN')
+        write_csv(info)
 
         if info:
-            print(info)
 
-            write_csv(info)
             date = f"{info[0]}"
             rate_PLN = f"{info[1]}"
             req_date = f"{info[3]}"
@@ -82,14 +87,7 @@ def get_PLN_rate():
 
             display_info(date, rate_PLN, req_date, req_time)
 
-        #
-            # print(f'''
-            # -----------------------------------------
-            # Kurs EUR do PLN z dnia {date} wynosi {rate_PLN}
-            # Zapytanie z dnia {req_date}
-            # Czas trwania zapytania wyniósł {req_time} s.
-            # -----------------------------------------''')
+        time.sleep(15)
 
-        time.sleep(5)
 
 get_PLN_rate()
