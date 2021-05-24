@@ -1,7 +1,7 @@
 import unittest
 from selenium import webdriver
 from simplepage.config.test_settings import TestSettings
-from simplepage.page_objects import main_page, checkboxes_page
+from simplepage.page_objects import main_page, checkboxes_page, hover_page, users_page
 
 
 class Test(unittest.TestCase):
@@ -17,7 +17,13 @@ class Test(unittest.TestCase):
     def test1_main_page_content_visible(self):
         self.assertTrue(main_page.content_visible(self.driver))
 
-    def test2_checboxes_tab_visible(self):
+    def test2_checkboxes_tab_visible(self):
         checkboxes_page.click_checkboxes_tab(self.driver)
         self.assertTrue(checkboxes_page.is_checkbox_tab_visible(self.driver))
         checkboxes_page.click_checkboxes(self.driver)
+
+    def test3_hovers_tab_visibility(self):
+        hover_page.click_hovers_tab(self.driver)
+        self.assertTrue(hover_page.is_hover_content_displayed(self.driver))
+        hover_page.hover_over_and_click(self.driver)
+        self.assertTrue(users_page.is_error_info_displayed(self.driver))
