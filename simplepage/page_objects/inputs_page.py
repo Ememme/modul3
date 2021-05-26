@@ -25,3 +25,13 @@ def send_correct_input_data(driver_instance):
     else:
         return False
 
+
+def send_incorrect_input_data(driver_instance):
+    wait_for_visibility_of_element(driver_instance, input_field)
+    elem = driver_instance.find_element_by_xpath(input_field)
+    elem.send_keys('abcd')
+    value = 'abcd'
+    if value == elem.get_attribute("value"):
+        return False
+    else:
+        return True
