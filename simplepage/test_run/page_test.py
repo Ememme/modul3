@@ -31,3 +31,8 @@ class Test(unittest.TestCase):
     def test4_input_tab_visibility(self):
         inputs_page.click_input_tab(self.driver)
         self.assertTrue(inputs_page.is_input_field_displayed(self.driver))
+
+    def test5_send_correct_input_data(self):
+        inputs_page.click_input_tab(self.driver)
+        self.assertTrue(inputs_page.send_correct_input_data(self.driver))
+
