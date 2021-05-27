@@ -1,7 +1,7 @@
 import unittest
 from selenium import webdriver
 from simplepage.config.test_settings import TestSettings
-from simplepage.page_objects import main_page, checkboxes_page, hover_page, users_page, inputs_page
+from simplepage.page_objects import main_page, checkboxes_page, hover_page, users_page, inputs_page, drop_down_page
 
 
 class Test(unittest.TestCase):
@@ -39,4 +39,10 @@ class Test(unittest.TestCase):
     def test6_send_incorrect_input_data(self):
         inputs_page.click_input_tab(self.driver)
         self.assertTrue(inputs_page.send_incorrect_input_data(self.driver))
+
+    def test7_dropdown_select(self):
+        drop_down_page.click_dropdown_tab(self.driver)
+        self.assertTrue(drop_down_page.is_dropdown_content_visible(self.driver))
+        drop_down_page.get_dropdown_item(self.driver)
+
 
