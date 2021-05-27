@@ -1,10 +1,14 @@
 import unittest
 from selenium import webdriver
+from selenium.webdriver.chrome.webdriver import WebDriver
+
 from simplepage.config.test_settings import TestSettings
-from simplepage.page_objects import main_page, checkboxes_page, hover_page, users_page, inputs_page, drop_down_page
+from simplepage.page_objects import main_page, checkboxes_page, hover_page, users_page, inputs_page, drop_down_page, add_remove_element
 
 
 class Test(unittest.TestCase):
+    driver: WebDriver
+
     def setUp(self):
         self.driver = webdriver.Chrome('/Applications/chromedriver')
         self.url = TestSettings.page_url
@@ -45,4 +49,20 @@ class Test(unittest.TestCase):
         self.assertTrue(drop_down_page.is_dropdown_content_visible(self.driver))
         drop_down_page.get_dropdown_item(self.driver)
 
+    def test8_add_remove_tab_visibility(self):
+        add_remove_element.click_add_remove_tab(self.driver)
+        self.assertTrue(add_remove_element.is_add_remove_content_visible(self.driver))
 
+    def test9_add_element(self):
+        add_remove_element.click_add_remove_tab(self.driver)
+        add_remove_element.click_add_button(self.driver)
+        self.assertTrue(add_remove_element.is_element_visible(self.driver))
+
+    def test10_delete_element(self):
+        add_remove_element.click_add_remove_tab(self.driver)
+        add_remove_element.click_add_button(self.driver)
+        add_remove_element.click_delete_button(self.driver)
+        self.assertTrue(add_remove_element.is_element_invisible(self.driver))
+
+    if __name__ == '__main__':
+        unittest.main()
