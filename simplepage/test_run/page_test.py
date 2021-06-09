@@ -3,7 +3,7 @@ from selenium import webdriver
 from selenium.webdriver.chrome.webdriver import WebDriver
 
 from simplepage.config.test_settings import TestSettings
-from simplepage.page_objects import main_page, checkboxes_page, hover_page, users_page, inputs_page, drop_down_page, add_remove_element
+from simplepage.page_objects import main_page, checkboxes_page, hover_page, users_page, inputs_page, drop_down_page, add_remove_element, date_picker_page
 
 
 class Test(unittest.TestCase):
@@ -16,6 +16,7 @@ class Test(unittest.TestCase):
         self.driver.maximize_window()
 
     def tearDown(self):
+        self.driver.close()
         self.driver.quit()
 
     def test1_main_page_content_visible(self):
@@ -63,6 +64,10 @@ class Test(unittest.TestCase):
         add_remove_element.click_add_button(self.driver)
         add_remove_element.click_delete_button(self.driver)
         self.assertTrue(add_remove_element.is_element_invisible(self.driver))
+
+    def test11_date_picker_visibility(self):
+        date_picker_page.click_date_picker_tab(self.driver)
+        self.assertTrue(date_picker_page.is_date_picker_visible(self.driver))
 
     if __name__ == '__main__':
         unittest.main()
