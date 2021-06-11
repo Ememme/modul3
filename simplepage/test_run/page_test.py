@@ -3,7 +3,7 @@ from selenium import webdriver
 from selenium.webdriver.chrome.webdriver import WebDriver
 
 from simplepage.config.test_settings import TestSettings
-from simplepage.page_objects import main_page, checkboxes_page, hover_page, users_page, inputs_page, drop_down_page, add_remove_element, date_picker_page
+from simplepage.page_objects import main_page, checkboxes_page, hover_page, users_page, inputs_page, drop_down_page, add_remove_element, date_picker_page, basic_auth_page, logged_in_page
 
 
 class Test(unittest.TestCase):
@@ -73,23 +73,23 @@ class Test(unittest.TestCase):
         date_picker_page.click_date_picker_tab(self.driver)
         self.assertTrue(date_picker_page.check_template_date(self.driver))
 
-    def test12_enter_correct_date(self):
+    def test13_enter_correct_date(self):
         date_picker_page.click_date_picker_tab(self.driver)
         self.assertTrue(date_picker_page.enter_correct_date(self.driver))
 
-    def test13_enter_incorrect_date_string(self):
+    def test14_enter_incorrect_date_string(self):
         date_picker_page.click_date_picker_tab(self.driver)
         self.assertTrue(date_picker_page.enter_incorrect_date_string(self.driver))
 
-    def test14_enter_incorrect_date(self):
+    def test15_enter_incorrect_date(self):
         date_picker_page.click_date_picker_tab(self.driver)
         self.assertTrue(date_picker_page.enter_incorrect_date_number(self.driver))
 
-    def test15_enter_incorrect_min_date(self):
+    def test16_enter_incorrect_min_date(self):
         date_picker_page.click_date_picker_tab(self.driver)
         self.assertTrue(date_picker_page.enter_incorrect_min_date(self.driver))
 
-    def test15_enter_incorrect_max_date(self):
+    def test17_enter_incorrect_max_date(self):
         date_picker_page.click_date_picker_tab(self.driver)
         self.assertTrue(date_picker_page.enter_incorrect_max_date(self.driver))
 
@@ -97,6 +97,16 @@ class Test(unittest.TestCase):
     # def test16_pick_date(self):
     #     date_picker_page.click_date_picker_tab(self.driver)
     #     date_picker_page.pick_date(self.driver)
+
+    def test18_basic_auth_visibility(self):
+        basic_auth_page.click_basic_auth_tab(self.driver)
+        self.assertTrue(basic_auth_page.is_basic_auth_content_visible(self.driver))
+
+
+    def test19_basic_auth_send_correct_date(self):
+        basic_auth_page.click_basic_auth_tab(self.driver)
+        basic_auth_page.send_correct_username_and_password(self.driver)
+        self.assertTrue(logged_in_page.is_logged_in_info_displayed(self.driver))
 
     if __name__ == '__main__':
         unittest.main()
