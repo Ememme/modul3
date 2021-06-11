@@ -69,5 +69,34 @@ class Test(unittest.TestCase):
         date_picker_page.click_date_picker_tab(self.driver)
         self.assertTrue(date_picker_page.is_date_picker_visible(self.driver))
 
+    def test12_date_picker_template_date(self):
+        date_picker_page.click_date_picker_tab(self.driver)
+        self.assertTrue(date_picker_page.check_template_date(self.driver))
+
+    def test12_enter_correct_date(self):
+        date_picker_page.click_date_picker_tab(self.driver)
+        self.assertTrue(date_picker_page.enter_correct_date(self.driver))
+
+    def test13_enter_incorrect_date_string(self):
+        date_picker_page.click_date_picker_tab(self.driver)
+        self.assertTrue(date_picker_page.enter_incorrect_date_string(self.driver))
+
+    def test14_enter_incorrect_date(self):
+        date_picker_page.click_date_picker_tab(self.driver)
+        self.assertTrue(date_picker_page.enter_incorrect_date_number(self.driver))
+
+    def test15_enter_incorrect_min_date(self):
+        date_picker_page.click_date_picker_tab(self.driver)
+        self.assertTrue(date_picker_page.enter_incorrect_min_date(self.driver))
+
+    def test15_enter_incorrect_max_date(self):
+        date_picker_page.click_date_picker_tab(self.driver)
+        self.assertTrue(date_picker_page.enter_incorrect_max_date(self.driver))
+
+    #
+    # def test16_pick_date(self):
+    #     date_picker_page.click_date_picker_tab(self.driver)
+    #     date_picker_page.pick_date(self.driver)
+
     if __name__ == '__main__':
         unittest.main()
