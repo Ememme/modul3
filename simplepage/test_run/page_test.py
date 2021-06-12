@@ -106,7 +106,14 @@ class Test(unittest.TestCase):
     def test19_basic_auth_send_correct_date(self):
         basic_auth_page.click_basic_auth_tab(self.driver)
         basic_auth_page.send_correct_username_and_password(self.driver)
+        self.assertEqual('http://simpletestsite.fabrykatestow.pl/basicauth.html', logged_in_page.is_url_changed(self.driver))
         self.assertTrue(logged_in_page.is_logged_in_info_displayed(self.driver))
+
+    def test20_basic_auth_send_incorrect_data(self):
+        basic_auth_page.click_basic_auth_tab(self.driver)
+        self.assertTrue(basic_auth_page.send_incorrect_username_and_password(self.driver))
+
+
 
     if __name__ == '__main__':
         unittest.main()
