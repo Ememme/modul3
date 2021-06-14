@@ -3,7 +3,7 @@ from selenium import webdriver
 from selenium.webdriver.chrome.webdriver import WebDriver
 
 from simplepage.config.test_settings import TestSettings
-from simplepage.page_objects import main_page, checkboxes_page, hover_page, users_page, inputs_page, drop_down_page, add_remove_element, date_picker_page, basic_auth_page, logged_in_page
+from simplepage.page_objects import main_page, checkboxes_page, hover_page, users_page, inputs_page, drop_down_page, add_remove_element, date_picker_page, basic_auth_page, logged_in_page, form_page
 
 
 class Test(unittest.TestCase):
@@ -102,7 +102,6 @@ class Test(unittest.TestCase):
         basic_auth_page.click_basic_auth_tab(self.driver)
         self.assertTrue(basic_auth_page.is_basic_auth_content_visible(self.driver))
 
-
     def test19_basic_auth_send_correct_date(self):
         basic_auth_page.click_basic_auth_tab(self.driver)
         basic_auth_page.send_correct_username_and_password(self.driver)
@@ -112,6 +111,10 @@ class Test(unittest.TestCase):
     def test20_basic_auth_send_incorrect_data(self):
         basic_auth_page.click_basic_auth_tab(self.driver)
         self.assertTrue(basic_auth_page.send_incorrect_username_and_password(self.driver))
+
+    def test21_is_form_visible(self):
+        form_page.click_form_tab(self.driver)
+        self.assertTrue(form_page.is_form_content_visible(self.driver))
 
 
 
