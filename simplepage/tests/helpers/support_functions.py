@@ -20,7 +20,7 @@ def wait_for_visibility_of_element(driver_instance, xpath, time_to_wait=10):
     return elem
 
 
-def wait_for_visibility_of_element_ID(driver_instance, id, time_to_wait=10):
+def wait_for_visibility_of_element_ID(driver_instance, id, time_to_wait=2):
     try:
         elem = WebDriverWait(driver_instance, time_to_wait).until(EC.visibility_of_element_located((By.ID, id)))
     except TimeoutException:
