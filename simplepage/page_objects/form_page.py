@@ -1,7 +1,5 @@
 from simplepage.tests.helpers.support_functions import *
 from selenium.webdriver.common.alert import Alert
-from selenium.webdriver.remote.switch_to import SwitchTo
-
 from time import sleep
 
 form_tab = '#form-header'
@@ -9,7 +7,6 @@ form_content = '#form-content'
 form_input_name = '#fname'
 form_input_last_name = '#lname'
 form_submit_button = '#formSubmitButton'
-
 
 
 def click_form_tab(driver_instance):
@@ -32,9 +29,11 @@ def send_correct_input(driver_instance):
     last_name_input.send_keys('last name')
     submit_button = driver_instance.find_element_by_css_selector(form_submit_button)
     submit_button.click()
-    alert_info = Alert(driver_instance)
-    # print(alert_info, alert_info.text())
-    alert_info.accept()
+    alert_info_text = Alert(driver_instance).text
+    print(alert_info_text)
+    Alert(driver_instance).accept()
+    return alert_info_text
+
 
 def send_empty_inputs(driver_instance):
     wait_for_visibility_of_element(driver_instance, form_tab)
@@ -48,6 +47,7 @@ def send_empty_inputs(driver_instance):
     sleep(1)
     print(first_name_validation_text)
     return first_name_validation_text
+
 
 def send_empty_input_last_name(driver_instance):
     wait_for_visibility_of_element(driver_instance, form_tab)

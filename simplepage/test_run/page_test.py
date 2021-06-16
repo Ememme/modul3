@@ -118,7 +118,7 @@ class Test(unittest.TestCase):
 
     def test22_form_send_correct_input(self):
         form_page.click_form_tab(self.driver)
-        self.assertTrue(form_page.send_correct_input(self.driver))
+        self.assertEqual(form_page.send_correct_input(self.driver), 'success')
 
     def test22_form_send_empty_input(self):
         form_page.click_form_tab(self.driver)
