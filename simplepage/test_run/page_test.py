@@ -148,5 +148,9 @@ class Test(unittest.TestCase):
         drag_and_drop_page.click_drag_and_drop_tab(self.driver)
         self.assertTrue(drag_and_drop_page.is_drag_drop_content_visible(self.driver))
 
+    def test30_drag_elements(self):
+        drag_and_drop_page.click_drag_and_drop_tab(self.driver)
+        self.assertTrue(drag_and_drop_page.drag_element(self.driver))
+
     if __name__ == '__main__':
         unittest.main()
