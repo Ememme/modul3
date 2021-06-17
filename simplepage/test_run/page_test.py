@@ -131,7 +131,10 @@ class Test(unittest.TestCase):
     def test24_status_code_visibility(self):
         status_codes_page.click_status_code_tab(self.driver)
         self.assertTrue(status_codes_page.is_status_content_visible(self.driver))
-        status_codes_page.find_all_links(self.driver)
+
+    def test25_status_code_redirects(self):
+        status_codes_page.click_status_code_tab(self.driver)
+        self.assertTrue(status_codes_page.find_and_click_all_links(self.driver))
 
     def test_iframe_tab_visibility(self):
         iframe_page.click_iframe_tab(self.driver)
