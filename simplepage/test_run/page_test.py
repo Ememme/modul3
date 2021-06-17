@@ -3,7 +3,7 @@ from selenium import webdriver
 from selenium.webdriver.chrome.webdriver import WebDriver
 
 from simplepage.config.test_settings import TestSettings
-from simplepage.page_objects import main_page, iframe_page, checkboxes_page, hover_page, users_page, inputs_page, drop_down_page, add_remove_element, date_picker_page, basic_auth_page, logged_in_page, form_page, status_codes_page
+from simplepage.page_objects import main_page, drag_and_drop_page, iframe_page, checkboxes_page, hover_page, users_page, inputs_page, drop_down_page, add_remove_element, date_picker_page, basic_auth_page, logged_in_page, form_page, status_codes_page
 
 
 class Test(unittest.TestCase):
@@ -120,29 +120,33 @@ class Test(unittest.TestCase):
         form_page.click_form_tab(self.driver)
         self.assertEqual(form_page.send_correct_input(self.driver), 'success')
 
-    def test22_form_send_empty_input(self):
+    def test23_form_send_empty_input(self):
         form_page.click_form_tab(self.driver)
         self.assertEqual(form_page.send_empty_inputs(self.driver), 'Please fill in this field.')
 
-    def test23_form_send_empty_last_name(self):
+    def test24_form_send_empty_last_name(self):
         form_page.click_form_tab(self.driver)
         self.assertEqual(form_page.send_empty_input_last_name(self.driver), 'Please fill in this field.')
 
-    def test24_status_code_visibility(self):
+    def test25_status_code_visibility(self):
         status_codes_page.click_status_code_tab(self.driver)
         self.assertTrue(status_codes_page.is_status_content_visible(self.driver))
 
-    def test25_status_code_redirects(self):
+    def test26_status_code_redirects(self):
         status_codes_page.click_status_code_tab(self.driver)
         self.assertTrue(status_codes_page.find_and_click_all_links(self.driver))
 
-    def test_iframe_tab_visibility(self):
+    def test27_iframe_tab_visibility(self):
         iframe_page.click_iframe_tab(self.driver)
         self.assertTrue(iframe_page.is_iframe_visible(self.driver))
 
-    def test_iframe_buttons(self):
+    def test28_iframe_buttons(self):
         iframe_page.click_iframe_tab(self.driver)
         self.assertTrue(iframe_page.find_buttons(self.driver))
+
+    def test29_drag_and_drop_visibility(self):
+        drag_and_drop_page.click_drag_and_drop_tab(self.driver)
+        self.assertTrue(drag_and_drop_page.is_drag_drop_content_visible(self.driver))
 
     if __name__ == '__main__':
         unittest.main()
