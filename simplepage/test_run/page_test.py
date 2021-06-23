@@ -3,7 +3,9 @@ from selenium import webdriver
 from selenium.webdriver.chrome.webdriver import WebDriver
 
 from simplepage.config.test_settings import TestSettings
-from simplepage.page_objects import main_page, drag_and_drop_page, iframe_page, checkboxes_page, hover_page, users_page, inputs_page, drop_down_page, add_remove_element, date_picker_page, basic_auth_page, logged_in_page, form_page, status_codes_page
+from simplepage.page_objects import main_page, drag_and_drop_page, key_presses_page, iframe_page, checkboxes_page, \
+    hover_page, users_page, inputs_page, drop_down_page, add_remove_element, date_picker_page, basic_auth_page, \
+    logged_in_page, form_page, status_codes_page
 
 
 class Test(unittest.TestCase):
@@ -93,7 +95,7 @@ class Test(unittest.TestCase):
         date_picker_page.click_date_picker_tab(self.driver)
         self.assertTrue(date_picker_page.enter_incorrect_max_date(self.driver))
 
-    #
+    # #
     # def test16_pick_date(self):
     #     date_picker_page.click_date_picker_tab(self.driver)
     #     date_picker_page.pick_date(self.driver)
@@ -105,7 +107,8 @@ class Test(unittest.TestCase):
     def test19_basic_auth_send_correct_date(self):
         basic_auth_page.click_basic_auth_tab(self.driver)
         basic_auth_page.send_correct_username_and_password(self.driver)
-        self.assertEqual('http://simpletestsite.fabrykatestow.pl/basicauth.html', logged_in_page.is_url_changed(self.driver))
+        self.assertEqual('http://simpletestsite.fabrykatestow.pl/basicauth.html',
+                         logged_in_page.is_url_changed(self.driver))
         self.assertTrue(logged_in_page.is_logged_in_info_displayed(self.driver))
 
     def test20_basic_auth_send_incorrect_data(self):
@@ -151,6 +154,22 @@ class Test(unittest.TestCase):
     def test30_drag_elements(self):
         drag_and_drop_page.click_drag_and_drop_tab(self.driver)
         self.assertTrue(drag_and_drop_page.drag_element(self.driver))
+
+    def test31_key_presses_visibility(self):
+        key_presses_page.click_key_presses_tab(self.driver)
+        self.assertTrue(key_presses_page.is_key_presses_tab_visible(self.driver))
+
+    def test32_check_numerical_keys(self):
+        key_presses_page.click_key_presses_tab(self.driver)
+        self.assertTrue(key_presses_page.send_numbers(self.driver))
+
+    def test32_check_alpha_keys(self):
+        key_presses_page.click_key_presses_tab(self.driver)
+        self.assertTrue(key_presses_page.send_letters(self.driver))
+
+    def test33_check_special_keys_and_chars(self):
+        key_presses_page.click_key_presses_tab(self.driver)
+        self.assertTrue(key_presses_page.send_special_keys(self.driver))
 
     if __name__ == '__main__':
         unittest.main()
