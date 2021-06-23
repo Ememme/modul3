@@ -33,7 +33,7 @@ def find_buttons(driver_instance):
         else:
             checked_buttons.append([item.text, False])
 
-    print(checked_buttons)
+    # print(checked_buttons)
     return all(checked_buttons)
 
 
