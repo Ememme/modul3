@@ -22,6 +22,7 @@ def is_element_visible(driver_instance):
     delete_button = wait_for_visibility_of_element(driver_instance, added_element)
     return delete_button.is_displayed()
 
+
 def click_add_button(driver_instance):
     button = wait_for_visibility_of_element(driver_instance, add_button)
     button.click()
@@ -29,15 +30,15 @@ def click_add_button(driver_instance):
 
 
 def click_delete_button(driver_instance):
-    delete_button = wait_for_visibility_of_element(driver_instance, added_element)
+    delete_button = driver_instance.find_element_by_xpath(added_element)
     delete_button.click()
-    wait_for_invisibility_of_element(driver_instance, added_element)
+    wait_for_invisibility_of_element_xpath(driver_instance, added_element)
     sleep(2)
 
 
 def is_element_invisible(driver_instance):
     try:
-        wait_for_invisibility_of_element(driver_instance,added_element)
+        wait_for_invisibility_of_element_xpath(driver_instance, added_element)
         return True
     except NoSuchElementException:
         return False
