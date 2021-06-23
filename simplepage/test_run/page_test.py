@@ -95,7 +95,7 @@ class Test(unittest.TestCase):
         date_picker_page.click_date_picker_tab(self.driver)
         self.assertTrue(date_picker_page.enter_incorrect_max_date(self.driver))
 
-    # #
+    #
     # def test16_pick_date(self):
     #     date_picker_page.click_date_picker_tab(self.driver)
     #     date_picker_page.pick_date(self.driver)
@@ -163,11 +163,11 @@ class Test(unittest.TestCase):
         key_presses_page.click_key_presses_tab(self.driver)
         self.assertTrue(key_presses_page.send_numbers(self.driver))
 
-    def test32_check_alpha_keys(self):
+    def test33_check_alpha_keys(self):
         key_presses_page.click_key_presses_tab(self.driver)
         self.assertTrue(key_presses_page.send_letters(self.driver))
 
-    def test33_check_special_keys_and_chars(self):
+    def test34_check_special_keys_and_chars(self):
         key_presses_page.click_key_presses_tab(self.driver)
         self.assertTrue(key_presses_page.send_special_keys(self.driver))
 
