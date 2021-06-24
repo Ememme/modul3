@@ -95,11 +95,6 @@ class Test(unittest.TestCase):
         date_picker_page.click_date_picker_tab(self.driver)
         self.assertTrue(date_picker_page.enter_incorrect_max_date(self.driver))
 
-    #
-    # def test16_pick_date(self):
-    #     date_picker_page.click_date_picker_tab(self.driver)
-    #     date_picker_page.pick_date(self.driver)
-
     def test18_basic_auth_visibility(self):
         basic_auth_page.click_basic_auth_tab(self.driver)
         self.assertTrue(basic_auth_page.is_basic_auth_content_visible(self.driver))
@@ -161,15 +156,15 @@ class Test(unittest.TestCase):
 
     def test32_check_numerical_keys(self):
         key_presses_page.click_key_presses_tab(self.driver)
-        self.assertTrue(key_presses_page.send_numbers(self.driver))
+        self.assertFalse(key_presses_page.send_numbers(self.driver))
 
     def test33_check_alpha_keys(self):
         key_presses_page.click_key_presses_tab(self.driver)
-        self.assertTrue(key_presses_page.send_letters(self.driver))
+        self.assertFalse(key_presses_page.send_letters(self.driver))
 
     def test34_check_special_keys_and_chars(self):
         key_presses_page.click_key_presses_tab(self.driver)
-        self.assertTrue(key_presses_page.send_special_keys(self.driver))
+        self.assertFalse(key_presses_page.send_special_keys(self.driver))
 
     if __name__ == '__main__':
         unittest.main()
