@@ -85,59 +85,30 @@ def is_key_presses_tab_visible(driver_instance):
 
 
 def send_numbers(driver_instance):
-    key_input = driver_instance.find_element_by_css_selector(keypress_input)
-    result = driver_instance.find_element_by_css_selector(keypress_result)
+    errors = iterate_over_dictionary(driver_instance, numbers_dict, keypress_input, keypress_result)
 
-    errors = []
-
-    for key, value in numbers_dict.items():
-        key_input.send_keys(value)
-        sleep(.5)
-        # print(value, result.get_attribute('textContent'))
-
-        if str(value) not in result.get_attribute('textContent'):
-            errors.append([key, result.get_attribute('textContent')])
-
-    if len(errors) == 0:
+    if errors:
+        print(errors)
         return True
     else:
         return False
 
 
 def send_letters(driver_instance):
-    key_input = driver_instance.find_element_by_css_selector(keypress_input)
-    result = driver_instance.find_element_by_css_selector(keypress_result)
+    errors = iterate_over_dictionary(driver_instance, letters_dict, keypress_input, keypress_result)
 
-    errors = []
-    for key, value in letters_dict.items():
-        key_input.send_keys(value)
-        sleep(.1)
-        printed = result.get_attribute('textContent').split("You entered:", 1)[-1]
-        print(printed)
-        if str(value) not in printed:
-            errors.append([key, result.get_attribute('textContent')])
-
-    if len(errors) == 0:
+    if errors:
+        print(errors)
         return True
     else:
         return False
 
 
 def send_special_keys(driver_instance):
-    key_input = driver_instance.find_element_by_css_selector(keypress_input)
-    result = driver_instance.find_element_by_css_selector(keypress_result)
-    errors = []
+    errors = iterate_over_dictionary(driver_instance, special_keys_dict, keypress_input, keypress_result)
 
-    for key, value in special_keys_dict.items():
-        key_input.send_keys(value)
-        sleep(.2)
-        printed = result.get_attribute('textContent').split("You entered:", 1)[-1]
-
-        if value not in printed and len(printed) == 1:
-            errors.append([key, result.get_attribute('textContent')])
-
-    print(errors)
-    if len(errors) == 0:
+    if errors:
+        print(errors)
         return True
     else:
         return False
