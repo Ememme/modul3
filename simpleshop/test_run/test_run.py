@@ -3,7 +3,8 @@ from selenium import webdriver
 from selenium.webdriver.chrome.webdriver import WebDriver
 
 from simpleshop.config.test_settings import TestSettings
-from simpleshop.page_objects import main_page
+from simpleshop.page_objects import main_page, login_page, account_page
+
 
 class Test(unittest.TestCase):
     driver: WebDriver
@@ -19,4 +20,16 @@ class Test(unittest.TestCase):
         self.driver.quit()
 
     def test1_main_page_visibility(self):
-        main_page.is_content_visible(self.driver)
+        self.assertTrue(main_page.is_content_visible(self.driver))
+
+    def test2_go_to_login_page(self):
+        main_page.go_to_login_page(self.driver)
+        login_page.correct_login(self.driver)
+        self.assertTrue(account_page.is_account_visible(self.driver))
+
+    def test3_incorrect_login(self):
+        main_page.go_to_login_page(self.driver)
+        self.assertTrue(login_page.incorrect_login(self.driver))
+
+
+
