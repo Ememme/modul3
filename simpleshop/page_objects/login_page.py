@@ -1,9 +1,9 @@
 from time import sleep
 from simpleshop.tests.support_functions import *
-
 from selenium.common.exceptions import StaleElementReferenceException
 
 from simpleshop.tests.data_generator import *
+
 user = '#username'
 password = '#password'
 login_button = '//*[@id="customer_login"]/div[1]/form/p[3]/button'
@@ -22,7 +22,7 @@ user4 = 'wacog70401@tinkmail.net'
 password4 = 'Lk*3Q9&am3zL'
 
 user5 = 'calose2528@maillei.net'
-password5v= 'lkSb&SAJwLWo'
+password5v = 'lkSb&SAJwLWo'
 
 
 def correct_login(driver_instance):
@@ -49,7 +49,3 @@ def incorrect_login(driver_instance):
     except StaleElementReferenceException:
         print('ERROR: wrong user/password')
         return True
-
-
-
-
